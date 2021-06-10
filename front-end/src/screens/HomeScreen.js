@@ -1,12 +1,16 @@
+import axios from "axios";
+import Rating from "../../components/Rating";
+
 const HomeScreen = {
   render: async () => {
-    const response = await fetch("http://localhost:8000/api/products", {
+    const response = await axios({
+      url: "http://localhost:8000/api/products",
       headers: { "Content-Type": "application/json" },
     });
-    if (!response || !response.ok) {
+    if (!response || response.statusText !== "OK") {
       return `<div>Error in retrieving data</div>`;
     }
-    const products = await response.json();
+    const products = response.data;
     return `
         <ul class="products">
             ${products
@@ -14,14 +18,22 @@ const HomeScreen = {
                 (product) => `
             <li>
                 <div class="product">
-                    <a href="/front-end/src/#/product/${product._id}">
-                        <img src="https://dummyimage.com/200x300" alt="${product.name}"/>
+                    <a href="/#/product/${product._id}">
+                        <img src="https://dummyimage.com/200x300" alt="${
+                          product.name
+                        }"/>
                     </a>
                     <div class="product-name">
                         <a href="/#/product/1">${product.name}</a>
                     </div>
+                    <div class="product-rating">
+                      ${Rating.render({
+                        value: product.rating,
+                        text: `${product.numReviews} reviews`,
+                      })}
+                    </div>
                     <div class="product-brand">${product.brand}</div>
-                    <div class="product-price">${product.price}</div>
+                    <div class="product-price">$${product.price}</div>
                 </div>
             </li>
             `
