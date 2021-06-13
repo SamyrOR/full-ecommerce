@@ -3,7 +3,7 @@
   --bg-light: #f8f8f8;
   --bg-light-gray: #f0f0f0;
   --text-color: #fff;
-  --text-dark: #808080;
+  --text-dark: #c0c0c0;
   --text-darker: #808080;
   --text-hover-color: #f08040;
   --success: #40c040;
@@ -23,7 +23,7 @@ html {
 }
 body {
   height: 100vh;
-  font: 1.6rem Helvetica, Arial;
+  font: 1.6rem sans-serif;
 }
 
 a {
@@ -36,13 +36,18 @@ a:hover {
 }
 
 button {
-  padding: 1rem;
-  font: 1.6rem Helvetica Arial;
-  border-radius: 0.5rem;
-  border: 0.1rem var(--text-dark) solid;
   cursor: pointer;
 }
 
+input,
+button {
+  padding: 1rem;
+  font: 1.6rem sans-serif;
+  border-radius: 0.5rem;
+  border: 0.1rem var(--text-dark) solid;
+}
+
+input:hover,
 button:hover {
   border: 0.1rem var(--text-darker) solid;
 }
@@ -51,6 +56,9 @@ button.primary {
   background-color: var(--primary);
 }
 
+ul {
+  list-style-type: none;
+}
 .fw {
   width: 100%;
 }
@@ -111,7 +119,6 @@ footer {
   justify-content: center;
   padding: 0;
   margin: 0;
-  list-style-type: none;
 }
 
 .products li {
@@ -270,4 +277,30 @@ footer {
 .cart-list select {
   font-size: 1.3rem;
   padding: 0.5rem;
+}
+
+/* Form */
+
+.form-container {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+.form-items {
+  display: flex;
+  flex-direction: column;
+  width: 32rem;
+  padding: 2rem;
+  border: 0.1rem var(--text-dark) solid;
+  border-radius: 0.5rem;
+}
+
+.form-items li {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.form-container h1 {
+  font-size: 2.5rem;
 }

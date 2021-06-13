@@ -6,6 +6,5 @@ export const getCartItems = () => {
 };
 
 export const setCartItems = (cartItems) => {
-  console.log(cartItems);
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
