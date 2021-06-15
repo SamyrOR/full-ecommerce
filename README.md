@@ -14,3 +14,8 @@
 - MongoDB: Mongoose, Aggregation
 - Development: Babel,
 - Deployment: Heroku
+
+### Things i added
+
+- CSS Variables
+- QuerySelectors instead getElementsById 
