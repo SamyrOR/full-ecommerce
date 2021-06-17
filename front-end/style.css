@@ -334,3 +334,66 @@ footer {
 .form-container h1 {
   font-size: 2.5rem;
 }
+
+/* Checkout */
+
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 40rem;
+  margin: 1rem auto;
+}
+
+.checkout-steps > div {
+  flex: 1 1;
+  padding-top: 1rem;
+  color: var(--text-dark);
+  border-top: 0.3rem var(--text-dark) solid;
+}
+.checkout-steps > div.active {
+  color: var(--text-hover-color);
+  border-top-color: var(--text-hover-color);
+}
+
+/* Order */
+
+.order {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.order h2 {
+  margin: 0;
+  padding-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.order-info {
+  flex: 3 1 60rem;
+}
+
+.order-info > div,
+.order-action {
+  margin: 1rem;
+  padding: 1rem;
+  border: 0.1rem var(--text-dark) solid;
+  border-radius: 0.5rem;
+  background-color: var(--bg-light);
+}
+.order-action {
+  flex: 1 1 20rem;
+}
+
+.order-action li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.order-action .total {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--error);
+}
