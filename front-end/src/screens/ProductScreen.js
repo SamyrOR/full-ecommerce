@@ -1,6 +1,6 @@
 import { getProduct } from "../api";
 import { hideLoading, parseRequestUrl, showLoading } from "../utils";
-import Rating from "../../components/Rating";
+import Rating from "../components/Rating";
 
 const ProductScreen = {
   after_render: () => {

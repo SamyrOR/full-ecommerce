@@ -9,13 +9,11 @@
 
 ### Things that i learned
 
-- JavaScript:
 - Node & Express: JWT
 - MongoDB: Mongoose, Aggregation
 - Development: Babel,
-- Deployment: Heroku
 
 ### Things i added
 
 - CSS Variables
-- QuerySelectors instead getElementsById 
+- QuerySelectors instead getElementsById

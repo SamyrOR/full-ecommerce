@@ -122,8 +122,8 @@ header {
 
 header a {
   color: var(--text-color);
-  font-weight: bold;
   text-decoration: none;
+  padding-right: 0.5rem;
 }
 
 header a:hover {
@@ -131,7 +131,9 @@ header a:hover {
 }
 
 .brand a {
+  font-weight: bold;
   font-size: 3rem;
+  padding-left: 1rem;
 }
 
 footer {
@@ -398,4 +400,78 @@ footer {
   font-size: 2rem;
   font-weight: bold;
   color: var(--error);
+}
+
+/*Profile*/
+
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.profile-info {
+  flex: 1 1 20rem;
+}
+
+.profile-orders {
+  flex: 3 1 60rem;
+  margin-left: 1rem;
+}
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+th,
+td {
+  text-align: center;
+}
+
+tbody > tr:nth-child(odd) {
+  background-color: var(--bg-light-gray);
+}
+
+td {
+  padding: 0.5rem;
+}
+
+/* Dashboard */
+
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.dashboard h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.dashboard-menu {
+  flex: 1 1 20rem;
+}
+
+.dashboard-menu a {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  padding-left: 2rem;
+}
+
+.dashboard-menu a:hover {
+  background-color: var(--text-dark);
+}
+
+.dashboard-menu li.selected a {
+  background-color: var(--text-dark);
+  color: var(--text-hover-color);
+}
+
+.dashboard-content {
+  flex: 4 1 80rem;
+  padding: 1rem;
 }

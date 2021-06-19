@@ -1,43 +1,61 @@
-import { hideLoading, parseRequestUrl, showLoading } from "../utils";
-import { getOrder, getPaypalClientId } from "../api";
+import {
+  hideLoading,
+  parseRequestUrl,
+  reRender,
+  showLoading,
+  showMessage,
+} from "../utils";
+import { getOrder, getPaypalClientId, payOrder } from "../api";
 
-const handlePayment = (clientId) => {
-  window.paypal.Button.render({
-    env: "sandbox",
-    client: {
-      sandbox: clientId,
-      productions: "",
-    },
-    local: "pt_BR",
-    style: {
-      size: "responsive",
-      color: "gold",
-      shape: "pill",
-    },
-    commit: true,
-    payment(data, actions) {
-      return actions.payment.create({
-        transactions: [
-          {
-            amount: {
-              total: order.totalPrice,
-              currency: "BRL",
+const handlePayment = (clientId, totalPrice) => {
+  window.paypal.Button.render(
+    {
+      env: "sandbox",
+      client: {
+        sandbox: clientId,
+        productions: "",
+      },
+      local: "pt_BR",
+      style: {
+        size: "responsive",
+        color: "gold",
+        shape: "pill",
+      },
+      commit: true,
+      payment(data, actions) {
+        return actions.payment.create({
+          transactions: [
+            {
+              amount: {
+                total: totalPrice,
+                currency: "BRL",
+              },
             },
-          },
-        ],
-      });
+          ],
+        });
+      },
+      onAuthorize(data, actions) {
+        return actions.payment.execute().then(async () => {
+          showLoading();
+          await payOrder(parseRequestUrl().id, {
+            orderID: data.orderID,
+            payerID: data.payerID,
+            paymentID: data.paymentID,
+          });
+          hideLoading();
+          showMessage("Payment was successful", () => {
+            reRender(OrderScreen);
+          });
+        });
+      },
     },
-    onAuthorize(data, actions) {
-      return actions.payment.execute().then(async () => {
-        showLoading();
-        //call pay order
-        hideLoading();
-      });
-    },
+    "#paypal-button"
+  ).then(() => {
+    hideLoading();
   });
 };
 
-const addPaypalSDK = async () => {
+const addPaypalSDK = async (totalPrice) => {
   const clientId = await getPaypalClientId();
   showLoading();
   if (!window.paypal) {
@@ -45,10 +63,10 @@ const addPaypalSDK = async () => {
     script.type = "text/javascript";
     script.src = "https://www.paypalobjects.com/api/checkout.js";
     script.async = true;
-    script.onload = () => handlePayment(clientId);
+    script.onload = () => handlePayment(clientId, totalPrice);
     document.body.appendChild(script);
   } else {
-    handlePayment(clientId);
+    handlePayment(clientId, totalPrice);
   }
 };
 
@@ -70,6 +88,9 @@ const OrderScreen = {
       paidAt,
       isPaid,
     } = await getOrder(request.id);
+    if (!isPaid) {
+      addPaypalSDK(totalPrice);
+    }
     return `
     <div>
         <h1>Order ${_id}</h1>
@@ -145,6 +166,7 @@ const OrderScreen = {
                             <div>Order Total</div>
                             <div>$${totalPrice}</div>
                         </li>
+                        <li><div class="fw" id="paypal-button"></div></li>
                        
                     </ul>
                 </div>

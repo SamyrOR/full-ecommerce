@@ -6,7 +6,7 @@ import {
 } from "../localStorage";
 import { showLoading, hideLoading, showMessage } from "../utils";
 import { createOrder } from "../api";
-import CheckoutSteps from "../../components/CheckoutSteps";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 const convertCartToOrder = () => {
   const orderItems = getCartItems();

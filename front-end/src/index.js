@@ -4,13 +4,14 @@ import Error404Screen from "./screens/Error404Screen";
 import { hideLoading, parseRequestUrl, showLoading } from "./utils";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
-import Header from "../components/Header";
+import Header from "./components/Header";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import DashboardScreen from "./screens/DashboardScreen";
 
 const routes = {
   "/": HomeScreen,
@@ -24,6 +25,7 @@ const routes = {
   "/shipping": ShippingScreen,
   "/payment": PaymentScreen,
   "/placeorder": PlaceOrderScreen,
+  "/dashboard": DashboardScreen,
 };
 
 const router = async () => {
